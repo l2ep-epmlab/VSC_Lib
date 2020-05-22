@@ -1,8 +1,5 @@
 % Grid Forming VSC with droop control strategies 
 
-clear all
-clc
-
 % Nominal Frequency (Hz)
 fn = 50;   % Nominal frequency [Hz] 
 wn = 2*pi*fn;   
@@ -12,7 +9,9 @@ wn = 2*pi*fn;
 fb = fn;       %  Base Frequency value [Hz]            
 wb = wn;       
 
-Time_Step=40e-6; % Simulation time step [s]                 % 
+Time_Step=40e-6; % Simulation time step [s] 
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Voltage Source Description  
@@ -93,7 +92,12 @@ Time_Step=40e-6; % Simulation time step [s]                 %
 
 % Transient Virtual Resistor (Active high-pass Filter) %%
     VSC01_Rv = 0.09;            % Gain of TVR      
-    VSC01_W_LF = 60;            %  The  high-pass  filter  cut-frequency          
+    VSC01_W_LF = 60;            %  The  high-pass  filter  cut-frequency  
+
+% Virtual impedance 
+    VSC01_I_thresh_pu = 1;  % Output current limiting threshold to activate DZ0_vi (pu)
+    VSC01_DX_DR = 5; %DX_vi/DR_vi
+    VSC01_Kp_Rvi_pu = 0.676;% 
 
 % Strategy  1
     VSC01_mp1 = 0.0043;         % gain of the power loop 
@@ -102,7 +106,6 @@ Time_Step=40e-6; % Simulation time step [s]                 %
 % Strategy  2
     VSC01_mp2 = 0.0033;         % gain of the power loop 
     VSC01_wc2 = 33.3;           % low-pass  filter  cut-frequency 
-
 
 % Strategy  3
     VSC01_mp3 = 0.04;           % gain of the power loop / droop parameter
@@ -130,9 +133,3 @@ Time_Step=40e-6; % Simulation time step [s]                 %
  
  VSC01_Delta_P_Value = 0.2; % Step change on the active power  reference 
  VSC01_Delta_P_Time_Step = 0.2; % Time of active power step change
- 
-   
- 
-%% 
-%% Message box
-f = msgbox('Init completed');
