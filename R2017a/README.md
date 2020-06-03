@@ -18,14 +18,15 @@ Please see the LICENSE file for details
 * Simscape electrical Specialized Technology (>R2015a)
 
 ## Installation
-1. Download the library from 
+1. Download the library from this repositery
 > or
 1. Clone this repositery
-2. type the following command from the folder where you have extracted the library.
+2. Choose your release
+3. type the following command from the folder where you have extracted the library.
 ```shell
 setup_VSC_Lib
 ```
 > or
-2. add the Library folder in your Matlab path and refresh your simulink library browser
-3. Check that a new library named 'VSC4SPS' has been added in the library browser of Simulink
+3. add the Library folder in your Matlab path and refresh your simulink library browser
+4. Check that a new library named 'VSC4SPS' has been added in the library browser of Simulink
 
