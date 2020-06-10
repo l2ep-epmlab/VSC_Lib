@@ -59,7 +59,7 @@ Time_Step=40e-6; % Simulation time step [s]                 %
 %% Voltage Source Control Parameters  ------------------------------------------------
 
   
-  GRD00_R = 4/100;          % Droop value frequency support
+  GRD00_R = 4;          % Droop value frequency support
   GRD00_H= 5;               % equivalent inertia
   
   GRD00_TN = 1;             % Lead Time constant
