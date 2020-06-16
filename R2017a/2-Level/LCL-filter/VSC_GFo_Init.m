@@ -153,7 +153,7 @@ Time_Step=40e-6; % Simulation time step [s]                 %
 
 % Frequency support
 
-    VSC01_R = 4/100;            % Droop value of the outer frequency loop     
+    VSC01_R = 4;            % Droop value of the outer frequency loop     
 
 %% Virtual impedance 
 
