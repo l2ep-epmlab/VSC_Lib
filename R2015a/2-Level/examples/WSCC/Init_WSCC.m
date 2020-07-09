@@ -61,7 +61,7 @@ Time_Step=40e-6; % Simulation time step [s]
     VSC01_Un1 = 13.8 * 1e3;                                  % Nom. phase-to-phase VSC voltage [V]
     VSC01_Vn1 = VSC01_Un1 * 1e3/sqrt(3);
     VSC01_Un2 = 13.8 * 1e3;                                  % Nom. phase-to-phase grid voltage [V]
-    VSC01_Vn2 = VSC01_Vn2 * 1e3/sqrt(3);
+    VSC01_Vn2 = VSC01_Un2 * 1e3/sqrt(3);
     VSC01_Udc_n = 2 * 13.8 * 1e3;                                % Nom. DC voltage[V]
     
     
@@ -133,3 +133,30 @@ Time_Step=40e-6; % Simulation time step [s]
  
  VSC01_Delta_P_Value = -0.2; % Step change on the active power  reference 
  VSC01_Delta_P_Time_Step = 2; % Time of active power step change
+ 
+ %% PSS parameters
+ PSSMODEL=1;
+MB=[1   0.2 30   1.25 40    12 160];
+
+k=[8.3222    2.6014   19.0811    1.9818    3.6841   19.1783  240.6785    2.5684    4.3666   58.7391 7.6960   47.7975    8.7139  296.2463    2.7543    6.5051   47.7755    0.4780   35.4950   18.1866 94.2186];
+k1=k(1);
+k2=k(2);
+k3=k(3);
+k4=k(4);
+k5=k(5);
+k6=k(6);
+k7=k(7);
+k8=k(8);
+k9=k(9);
+k10=k(10);
+k11=k(11);
+k12=k(12);
+k13=k(13);
+k14=k(14);
+k15=k(15);
+k16=k(16);
+k17=k(17);
+k18=k(18);
+k19=k(19);
+k20=k(20);
+k21=k(21);

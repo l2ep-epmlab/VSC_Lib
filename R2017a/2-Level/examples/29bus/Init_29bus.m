@@ -62,7 +62,7 @@ Time_Step=40e-6; % Simulation time step [s]
     VSC01_Vn1 = 590 * 1e3/sqrt(3);
     VSC01_Un2 = 735 * 1e3;                                  % Nom. phase-to-phase grid voltage [V]
     VSC01_Vn2 = 735 * 1e3/sqrt(3);
-    VSC01_Udc_n = 2 * 590 * 1e3;                                % Nom. DC voltage[V]
+    VSC01_Udc_n = 2 * VSC01_Un1;                                % Nom. DC voltage[V]
     
     
  %% Base values
@@ -85,6 +85,12 @@ Time_Step=40e-6; % Simulation time step [s]
     % Transformer Values in SI
     VSC01_Rt = VSC01_Rt_pu * VSC01_Zb;      % Transformer resistance [S.I]
     VSC01_Lt = VSC01_Lt_pu * VSC01_Lb;      % Transformer inductance [S.I]
+
+%% Filter parameters
+    
+    VSC01_Rf_pu = 0.005;                  
+    VSC01_Lf_pu = 0.15;                     
+    VSC01_Cf_pu = 0.066;   
     
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -120,7 +126,7 @@ Time_Step=40e-6; % Simulation time step [s]
 
 % Frequency support
 
-    VSC01_R = 4/100;            % Droop value of the outer frequency loop     
+    VSC01_R = 4;            % Droop value of the outer frequency loop     
     
     
 

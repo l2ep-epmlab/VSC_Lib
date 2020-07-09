@@ -85,6 +85,12 @@ Time_Step=40e-6; % Simulation time step [s]
     % Transformer Values in SI
     VSC01_Rt = VSC01_Rt_pu * VSC01_Zb;      % Transformer resistance [S.I]
     VSC01_Lt = VSC01_Lt_pu * VSC01_Lb;      % Transformer inductance [S.I]
+
+%% Filter parameters
+    
+    VSC01_Rf_pu = 0.005;                  
+    VSC01_Lf_pu = 0.15;                     
+    VSC01_Cf_pu = 0.066;    
     
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -120,7 +126,7 @@ Time_Step=40e-6; % Simulation time step [s]
 
 % Frequency support
 
-    VSC01_R = 4/100;            % Droop value of the outer frequency loop     
+    VSC01_R = 4;            % Droop value of the outer frequency loop     
     
     
 
