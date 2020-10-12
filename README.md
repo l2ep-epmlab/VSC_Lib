@@ -1,9 +1,9 @@
-# Grid Forming Models for Matlab/SimPowerSystem
+# Grid-Forming and Grid-Feeding Models for Matlab/SimPowerSystem
 
 ## Introduction
 After the european project [Migrate](https://www.h2020-migrate.eu), generic simulation models for grid forming converters has been developped.
 
-The package in this repository are a set of Grid-Forming inverter models for Matlab/SimpowerSystem. It is intended as a simulation library for researchers, engineers, teachers or students that is easy to use or modify.
+The package in this repository are a set of Grid-Forming and Grid-Feeding inverter models for Matlab/SimpowerSystem. It is intended as a simulation library for researchers, engineers, teachers or students that is easy to use or modify.
 
 ## Terms of use
 The package is distributed as MIT license
