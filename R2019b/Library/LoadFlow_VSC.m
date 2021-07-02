@@ -48,7 +48,7 @@ end
 %% Compute Loadflow
 
 % Configure powergui as function of Generic Voltage Sources configuration:
-powerguiHandle = find_system(gcs,'SearchDepth','1','Name','powergui');
+ powerguiHandle = find_system(gcs,'SearchDepth','1','Name','powergui');
 try
     powerguiHandle = get_param(powerguiHandle{1},'Handle');
 catch
@@ -103,7 +103,7 @@ for i=1:length(VSC_Lib_handle.VSC.idx)
     set_param([VSC_Lib_handle.VSC.idx{i} '/Output_Transformer'],'Commented','off');
     set_param([VSC_Lib_handle.VSC.idx{i} '/Bridge_Model'],'Commented','off');
     
-    if (VSC_Lib_handle.VSC.to_be_linked == 1)
+    if (VSC_Lib_handle.VSC.to_be_linked(i) == 1)
         set_param(VSC_Lib_handle.VSC.idx{i}, 'LinkStatus', 'restore');
     end
 end
@@ -125,7 +125,7 @@ for i=1:length(VSC_Lib_handle.GenVSource.idx)
     set_param([VSC_Lib_handle.GenVSource.idx{i} '/Source_For_LF'],'Commented','on');
     set_param([VSC_Lib_handle.GenVSource.idx{i} '/Source_For_OP'],'Commented','off');
     
-    if (VSC_Lib_handle.GenVSource.to_be_linked == 1)
+    if (VSC_Lib_handle.GenVSource.to_be_linked(i) == 1)
         set_param(VSC_Lib_handle.GenVSource.idx{i}, 'LinkStatus', 'restore');
     end
     
