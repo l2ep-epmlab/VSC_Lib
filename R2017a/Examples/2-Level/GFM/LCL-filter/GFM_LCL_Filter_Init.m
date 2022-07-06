@@ -9,7 +9,7 @@ wn = 2*pi*fn;
 fb = fn;       %  Base Frequency value [Hz]            
 wb = wn;       
 
-Time_Step=40e-6; % Simulation time step [s]                 % 
+Time_Step=1e-6; % Simulation time step [s]                 % 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Voltage Source Description  
