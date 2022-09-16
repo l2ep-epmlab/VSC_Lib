@@ -70,7 +70,7 @@ function link_lib_sps(system_2_update)
         "powerlib/Electrical Sources"];
 
     for i=1:length(model_list)
-        if contains(model_list(i).LinkStatus,'unresolved')
+        %if contains(model_list(i).LinkStatus,'unresolved')
             for j=1:length(find_lib)
                 if contains(model_list(i).Library,find_lib(j))
                     block_name = model_list(i).Block;
@@ -81,6 +81,6 @@ function link_lib_sps(system_2_update)
                     set_param(block_name,'SourceBlock',str);
                 end 
             end
-        end
+        %end
     end
 end
