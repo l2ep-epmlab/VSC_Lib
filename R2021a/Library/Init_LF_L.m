@@ -3,11 +3,11 @@
 % Can be used for 2-level or MMC VSCs
     
 % Compute the delay compensation between control and power parts
-    if (Time_Step == -1)
-        Solver_Time_Step = 0;
-    else
-        Solver_Time_Step = Time_Step;
-    end
+    %if (Time_Step == -1)
+    %    Solver_Time_Step = 0;
+    %else
+    %    Solver_Time_Step = Time_Step;
+    %end
 
 % Compute Initial Voltage of VSC 
 %   from steady-state output transformer model and Loadflow result
@@ -31,18 +31,26 @@
     I1 = I2 + Im;
     V1 = (R1_pu+1i*X1_pu) * I1 + Vm;
 
-    Vvsc0 = abs(V1);
-    Theta_vsc0 = angle(V1) * 180/pi+Theta0;
+    Vm0 = abs(V1);
+    Theta_Vm0 = angle(V1) * 180/pi+Theta0;
     
-    Va0 = Vvsc0*sqrt(2)*Vb1*sin(Theta_vsc0*pi/180);
-    Vb0 = Vvsc0*sqrt(2)*Vb1*sin(Theta_vsc0*pi/180-2*pi/3);
-    Vc0 = Vvsc0*sqrt(2)*Vb1*sin(Theta_vsc0*pi/180+2*pi/3);
+    Vvirt = V1+1i*(Lc_eq-Lt_pu) * I1; % Compute virtual voltage for VI block
+    Vvsc0 = abs(Vvirt);
+    Theta_Vvsc0 = angle(Vvirt) * 180/pi+Theta0;
     
-    Vm0_d = Vvsc0*cos(angle(V1));
-    Vm0_q = Vvsc0*sin(angle(V1));
+    %Va0 = Vvsc0*sqrt(2)*Vb1*sin(Theta_vsc0*pi/180);
+    %Vb0 = Vvsc0*sqrt(2)*Vb1*sin(Theta_vsc0*pi/180-2*pi/3);
+    %Vc0 = Vvsc0*sqrt(2)*Vb1*sin(Theta_vsc0*pi/180+2*pi/3);
+    
+    Va0 = Vm0*sqrt(2)*Vb1*sin(Theta_Vm0*pi/180);
+    Vb0 = Vm0*sqrt(2)*Vb1*sin(Theta_Vm0*pi/180-2*pi/3);
+    Vc0 = Vm0*sqrt(2)*Vb1*sin(Theta_Vm0*pi/180+2*pi/3);
+    
+    Vm0_d = Vvsc0*cos(angle(Vvirt));
+    Vm0_q = Vvsc0*sin(angle(Vvirt));
     
 % Generate string to display LF results on Mask
     mo = get_param(gcb,'MaskObject');
-    mo.getDialogControl('LF_vsc_str').Prompt = ['V0 = ', num2str(Vvsc0),' pu, Angle = ', num2str(Theta_vsc0),'°'];
+    mo.getDialogControl('LF_vsc_str').Prompt = ['V0 = ', num2str(Vvsc0),' pu, Angle = ', num2str(Theta_Vvsc0),'°'];
     mo.getDialogControl('LF_pcc_str').Prompt = ['V0 = ', num2str(V0),' pu, Angle = ', num2str(Theta0),'°'];
     mo.getDialogControl('LF_pcc_Power_str').Prompt = ['P0 = ', num2str(P0),' pu, Q0 = ', num2str(Q0),' pu'];

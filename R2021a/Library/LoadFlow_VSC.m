@@ -23,7 +23,7 @@ for i=1:length(VSC_Lib_handle.VSC.idx)
     set_param([VSC_Lib_handle.VSC.idx{i} '/Source_For_LF'],'Commented','off','Frequency','fb','PhaseAngle','0','Voltage','Un2');
     set_param([VSC_Lib_handle.VSC.idx{i} '/Output_Transformer'],'Commented','on');
     set_param([VSC_Lib_handle.VSC.idx{i} '/Bridge_Model'],'Commented','on');
-    set_param([VSC_Lib_handle.VSC.idx{i} '/Bridge_Model/Three-Phase Source'],'Voltage','Vvsc0*Un1','PhaseAngle','Theta_vsc0','Frequency','fb');
+    set_param([VSC_Lib_handle.VSC.idx{i} '/Bridge_Model/Three-Phase Source'],'Voltage','Vm0*Un1','PhaseAngle','Theta_Vm0','Frequency','fb');
     
     VSC_Lib_handle.Sb = max(VSC_Lib_handle.Sb, evalin('base',get_param([VSC_Lib_handle.VSC.idx{i}],'Sn')));
     VSC_Lib_handle.fb = max(VSC_Lib_handle.fb, evalin('base',get_param([VSC_Lib_handle.VSC.idx{i}],'fn')));

@@ -16,3 +16,5 @@
     wb = 2*pi*fb;  wb_pu=1;
     Lb = Zb/wb;
     Cb = 1/(Zb*wb);
+    Vdcb = Udcn;
+    Idcb = Pb / Vdcb;

@@ -1,7 +1,7 @@
 % Grid Forming VSC with droop control strategies 
 
-Time_Step=50e-6; % Simulation time step (s) 
-
+Time_Step2=25e-6; % Simulation time step (s) 
+Time_Step= Time_Step2;
 fb = 50; % Nominal Frequency (Hz)
 Ug = 400e3; % Nominal Grid Voltage (V)
 
@@ -19,7 +19,7 @@ Ug = 400e3; % Nominal Grid Voltage (V)
 
   % Short circuit impedance
  
-  SCR = 20;                         % Short Circuit Ratio
+  SCR = 2;                         % Short Circuit Ratio
   GRD00_Xg_pu = 1/SCR;              % AC line reactor in per-unit [p.u]
   GRD00_Rg_pu = GRD00_Xg_pu/10;     % AC line resistance in per-unit [p.u]
          

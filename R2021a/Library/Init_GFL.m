@@ -9,3 +9,6 @@
     Ti_i = 2*zeta_i/wn_i-Rf_pu/(wn_i^2*Lf_pu/wb);
     Ki_i = Kp_i/Ti_i;
     %Kffi = 1;
+    
+    Ki_i = Rt_pu*wn_i;
+    Kp_i = Lt_pu/wb*wn_i;
