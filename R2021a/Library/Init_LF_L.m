@@ -34,7 +34,7 @@
     Vm0 = abs(V1);
     Theta_Vm0 = angle(V1) * 180/pi+Theta0;
     
-    Vvirt = V1+1i*(Lc_eq-Lt_pu) * I1; % Compute virtual voltage for VI block
+    Vvirt = V1+1i*(Lc_eq-Lc_pu) * I1; % Compute virtual voltage for VI block
     Vvsc0 = abs(Vvirt);
     Theta_Vvsc0 = angle(Vvirt) * 180/pi+Theta0;
     

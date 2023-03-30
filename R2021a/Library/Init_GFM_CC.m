@@ -29,9 +29,9 @@
     %Kp_Rvi_pu = X_VI/(DX_DR*(I_Max_TVI_pu-1)); 
 
 % Current Loop tuning
-    Kp_CC = Lt_pu*f_CC*2*pi/wb;
-    Ki_CC = Rt_pu*f_CC*2*pi;
-    w_ff = 2*pi*f_FF;
+    Kp_CC = (Lc_pu)*wn_CC/wb;
+    Ki_CC = 0;%(Rc_pu)*wn_CC;
+    %w_ff = 2*pi*f_FF;
     
 % Set the frequency droop gain
     R = R_percent / 100;
