@@ -4,6 +4,10 @@ model2update = bdroot;
 VSC_Lib_handle.VSC.idx = find_system(model2update,'MaskType','VSC');
 VSC_Lib_handle.VSC.to_be_linked = zeros(1,length(VSC_Lib_handle.VSC.idx));
 
+% Search All synchronous machines by looking for the Masktype
+VSC_Lib_handle.SM.idx = find_system(model2update,'MaskType','SM');
+VSC_Lib_handle.SM.to_be_linked = zeros(1,length(VSC_Lib_handle.SM.idx));
+
 %% Search All Generic Voltage Source by looking for the Masktype
 VSC_Lib_handle.GenVSource.idx = find_system(model2update,'MaskType','GenericVoltageSource');
 VSC_Lib_handle.GenVSource.to_be_linked = zeros(1,length(VSC_Lib_handle.GenVSource.idx));
@@ -21,13 +25,31 @@ for i=1:length(VSC_Lib_handle.VSC.idx)
         VSC_Lib_handle.VSC.to_be_linked(i) = 0;
     end
     set_param([VSC_Lib_handle.VSC.idx{i} '/Source_For_LF'],'Commented','off','Frequency','fb','PhaseAngle','0','Voltage','Un2');
-    set_param([VSC_Lib_handle.VSC.idx{i} '/Output_Transformer'],'Commented','on');
+    set_param([VSC_Lib_handle.VSC.idx{i} '/Output_Transformer'],'Commented','on');  
     set_param([VSC_Lib_handle.VSC.idx{i} '/Bridge_Model'],'Commented','on');
     set_param([VSC_Lib_handle.VSC.idx{i} '/Bridge_Model/Three-Phase Source'],'Voltage','Vm0*Un1','PhaseAngle','Theta_Vm0','Frequency','fb');
     
     VSC_Lib_handle.Sb = max(VSC_Lib_handle.Sb, evalin('base',get_param([VSC_Lib_handle.VSC.idx{i}],'Sn')));
     VSC_Lib_handle.fb = max(VSC_Lib_handle.fb, evalin('base',get_param([VSC_Lib_handle.VSC.idx{i}],'fn')));
     VSC_Lib_handle.Ub = max(VSC_Lib_handle.Ub, evalin('base',get_param([VSC_Lib_handle.VSC.idx{i}],'Un2')));
+end
+
+for i=1:length(VSC_Lib_handle.SM.idx)
+    if (strcmp(get_param(VSC_Lib_handle.SM.idx{i},'LinkStatus'),'resolved'))
+        set_param(VSC_Lib_handle.SM.idx{i}, 'LinkStatus', 'inactive');
+        VSC_Lib_handle.SM.to_be_linked(i) = 1;
+    else
+        VSC_Lib_handle.SM.to_be_linked(i) = 0;
+    end
+    set_param([VSC_Lib_handle.SM.idx{i} '/Source_For_LF'],'Commented','off','Frequency','fb','PhaseAngle','0','Voltage','Un2');
+    set_param([VSC_Lib_handle.SM.idx{i} '/Output_Transformer'],'Commented','on');
+    set_param([VSC_Lib_handle.SM.idx{i} '/SG'],'Commented','on');
+    set_param([VSC_Lib_handle.SM.idx{i} '/Aux'],'Commented','on');
+    set_param([VSC_Lib_handle.SM.idx{i} '/Selector'],'Commented','on');
+
+    VSC_Lib_handle.Sb = max(VSC_Lib_handle.Sb, evalin('base',get_param([VSC_Lib_handle.SM.idx{i}],'Sn')));
+    VSC_Lib_handle.fb = max(VSC_Lib_handle.fb, evalin('base',get_param([VSC_Lib_handle.SM.idx{i}],'fn')));
+    VSC_Lib_handle.Ub = max(VSC_Lib_handle.Ub, evalin('base',get_param([VSC_Lib_handle.SM.idx{i}],'Un2')));
 end
 
 for i=1:length(VSC_Lib_handle.GenVSource.idx)
@@ -71,6 +93,11 @@ catch
             set_param(VSC_Lib_handle.VSC.idx{i}, 'LinkStatus', 'restore');
         end
     end
+    for i=1:length(VSC_Lib_handle.SM.idx)
+        if (VSC_Lib_handle.SM.to_be_linked == 1)
+            set_param(VSC_Lib_handle.SM.idx{i}, 'LinkStatus', 'restore');
+        end
+    end
     for i=1:length(VSC_Lib_handle.GenVSource.idx)
         if (VSC_Lib_handle.GenVSource.to_be_linked == 1)
             set_param(VSC_Lib_handle.GenVSource.idx{i}, 'LinkStatus', 'restore');
@@ -107,18 +134,45 @@ for i=1:length(VSC_Lib_handle.VSC.idx)
         set_param(VSC_Lib_handle.VSC.idx{i}, 'LinkStatus', 'restore');
     end
 end
+%% Update all VSC with a Masktype equal to 'SM'
+for i=1:length(VSC_Lib_handle.SM.idx)
+    % look at the line in the Loadflow related to the internal fake
+    % Voltage source
+    Vsm_handle = find_system(VSC_Lib_handle.SM.idx{i},'FindAll','on','LookUnderMasks','on','IncludeCommented','on','Name','Source_For_LF');
+    for j=1:length(LF.vsrc)
+        if (LF.vsrc(j).handle == Vsm_handle)
+            Vsrc_idx = j;
+            Pb_VSC = evalin('base', get_param(VSC_Lib_handle.SM.idx{i},'Sn'));
+            %set_param(VSC_idx{i},'V_mag_0',num2str(LF.bus(test).vbase * abs(LF.bus(test).Vbus) / sqrt(3)),'Theta0',num2str(angle(LF.bus(test).Vbus) * 180/pi));
+            set_param(VSC_Lib_handle.SM.idx{i},'V0',num2str(abs(LF.vsrc(Vsrc_idx).Vt)),'Theta0',num2str(angle(LF.vsrc(Vsrc_idx).Vt) * 180/pi));
+            set_param(VSC_Lib_handle.SM.idx{i},'P0',num2str(real(LF.vsrc(Vsrc_idx).S)*LF_Pbase/Pb_VSC),'Q0',num2str(imag(LF.vsrc(Vsrc_idx).S)*LF_Pbase/Pb_VSC));
 
+            %p.setParameters('V_mag_0') = LF.bus(test).vbase * LF.bus(test).vref / sqrt(3);
+            %p.setParameters('Theta0') = LF.bus(test).angle;               
+        end
+    end
+    
+    set_param([VSC_Lib_handle.SM.idx{i} '/Source_For_LF'],'Commented','on');
+    set_param([VSC_Lib_handle.SM.idx{i} '/Output_Transformer'],'Commented','off');
+    set_param([VSC_Lib_handle.SM.idx{i} '/SG'],'Commented','off');
+    set_param([VSC_Lib_handle.SM.idx{i} '/Aux'],'Commented','off');
+    set_param([VSC_Lib_handle.SM.idx{i} '/Selector'],'Commented','off');
+    
+    if (VSC_Lib_handle.SM.to_be_linked(i) == 1)
+        set_param(VSC_Lib_handle.VSC.idx{i}, 'LinkStatus', 'restore');
+    end
+end
 %% Update all Generic Voltage Sources 
 for i=1:length(VSC_Lib_handle.GenVSource.idx)
     block_name = get_param(VSC_Lib_handle.GenVSource.idx{i},'Name');
     test = find(strcmp({LF.bus.ID},block_name));
-    %GenVSource_Sb = eval(get_param(VSC_Lib_handle.GenVSource.idx{i},'Sn'));
+    GenVSource_Sb = eval(get_param(VSC_Lib_handle.GenVSource.idx{i},'Sn'));
     %GenVSource_Vb = eval(get_param(VSC_Lib_handle.GenVSource.idx{i},'Un'))/sqrt(3);
     
     if (isempty(test)==0) % if a loadflow bus with the same name as the block name exists, then execute the following configuration of the block: 
         
-        set_param(VSC_Lib_handle.GenVSource.idx{i},'V0_pu',num2str(abs(LF.bus(test).Vbus)),'Theta0_deg',num2str(angle(LF.bus(test).Vbus)*180/pi));
-        set_param(VSC_Lib_handle.GenVSource.idx{i},'P0',num2str(real(LF.bus(test).Sbus)*LF_Pbase),'Q0',num2str(imag(LF.bus(test).Sbus)*LF_Pbase));  
+        set_param(VSC_Lib_handle.GenVSource.idx{i},'V0',num2str(abs(LF.bus(test).Vbus)),'Theta0',num2str(angle(LF.bus(test).Vbus)*180/pi));
+        set_param(VSC_Lib_handle.GenVSource.idx{i},'P0',num2str(real(LF.bus(test).Sbus)*LF_Pbase/GenVSource_Sb),'Q0',num2str(imag(LF.bus(test).Sbus)*LF_Pbase/GenVSource_Sb));  
         
     end
        
