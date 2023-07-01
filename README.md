@@ -20,7 +20,7 @@ Please see the LICENSE file for details
 * Simulink (>R2016a)
 * Simscape electrical Specialized Technology (>R2015a)
 
-Note: the recommanded Matlab versions is above R2021a, VSCLib can be run on version before but it is not fully tested
+Note: the recommended Matlab versions is above R2021a, VSCLib can be run on version before but it is not fully tested
 
 ## Installation
 1. Download the library from this repositery
