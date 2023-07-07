@@ -21,7 +21,7 @@ for i=1:length(VSC_Lib_handle.VSC.idx)
     is_connected_to_LF(end+1) = test_LF_conn(VSC_Lib_handle.VSC.idx{i});
 end
 for i=1:length(VSC_Lib_handle.SM.idx)
-    is_connected_to_LF(end+1) = test_LF_conn(VSC_Lib_handle.VSC.idx{i});
+    is_connected_to_LF(end+1) = test_LF_conn(VSC_Lib_handle.SM.idx{i});
 end
 if any(is_connected_to_LF == 0)
     error('Please verify if all library blocks are connected to a Load flow bus');
@@ -58,6 +58,7 @@ for i=1:length(VSC_Lib_handle.SM.idx)
     set_param([VSC_Lib_handle.SM.idx{i} '/SG'],'Commented','on');
     set_param([VSC_Lib_handle.SM.idx{i} '/Aux'],'Commented','on');
     set_param([VSC_Lib_handle.SM.idx{i} '/Selector'],'Commented','on');
+    set_param([VSC_Lib_handle.SM.idx{i} '/Bus1'],'Commented','on');
 
     VSC_Lib_handle.Sb = max(VSC_Lib_handle.Sb, evalin('base',get_param([VSC_Lib_handle.SM.idx{i}],'Sn')));
     VSC_Lib_handle.fb = max(VSC_Lib_handle.fb, evalin('base',get_param([VSC_Lib_handle.SM.idx{i}],'fn')));
@@ -169,6 +170,7 @@ for i=1:length(VSC_Lib_handle.SM.idx)
     set_param([VSC_Lib_handle.SM.idx{i} '/SG'],'Commented','off');
     set_param([VSC_Lib_handle.SM.idx{i} '/Aux'],'Commented','off');
     set_param([VSC_Lib_handle.SM.idx{i} '/Selector'],'Commented','off');
+    set_param([VSC_Lib_handle.SM.idx{i} '/Bus1'],'Commented','off');
     
     if (VSC_Lib_handle.SM.to_be_linked(i) == 1)
         set_param(VSC_Lib_handle.VSC.idx{i}, 'LinkStatus', 'restore');
