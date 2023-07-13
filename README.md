@@ -8,6 +8,9 @@ The package in this repository are a set of Grid-Forming and Grid-Feeding invert
 ## Terms of use
 The package is distributed as MIT license
 While not required by the terms of the license, we do request that publications derived from the use of the models explicitly cite the following references:
+
+T. Qoria, F. Gruson, F. Colas, G. Denis, T. Prevost, X. Guillaud. Inertia effect and load sharing capability of grid forming converters connected to a transmission grid, IET Conference Proceedings, 2019, p. 79 (6 pp.)-79 (6 pp.), DOI: 10.1049/cp.2019.0079
+
 T. Qoria, Q. Cossart, C. Li, X. Guillaud, F. Colas, F. Gruson and X. Kestelyn (2018). WP3-Control and Operation of a Grid with 100% Converter-Based Devices. Deliverable 3.2: Local control and simulation tools for large transmission systems. MIGRATE Project, Tech. Rep.
 
 T. Qoria, F. Gruson, F. Colas, G. Denis, T. Prevost and X. Guillaud, "Inertia effect and load sharing capability of grid forming converters connected to a transmission grid," 15th IET International Conference on AC and DC Power Transmission (ACDC 2019), Coventry, UK, 2019, pp. 1-6, doi: 10.1049/cp.2019.0079.
