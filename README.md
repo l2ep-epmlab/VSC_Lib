@@ -1,15 +1,14 @@
-# Grid-Forming and Grid-Feeding Models for Matlab/SimPowerSystem
+# Grid Forming Models for Matlab/SimPowerSystem
 
 ## Introduction
 After the european project [Migrate](https://www.h2020-migrate.eu), generic simulation models for grid forming converters has been developped.
 
-The package in this repository are a set of Grid-Forming and Grid-Feeding inverter models for Matlab/SimpowerSystem. It is intended as a simulation library for researchers, engineers, teachers or students that is easy to use or modify.
+The package in this repository are a set of Grid-Forming and Grid-Following inverter models for Matlab/SimpowerSystem. It is designed as an easy-to-use and modifiable simulation library for researchers, engineers, teachers, and students.
 
 ## Terms of use
 The package is distributed as MIT license
 While not required by the terms of the license, we do request that publications derived from the use of the models explicitly cite the following references:
-
-T. Qoria, F. Gruson, F. Colas, G. Denis, T. Prevost, X. Guillaud. Inertia effect and load sharing capability of grid forming converters connected to a transmission grid, IET Conference Proceedings, 2019, p. 79 (6 pp.)-79 (6 pp.), DOI: 10.1049/cp.2019.0079
+Carmen Cardozo, Thibault Prevost, Shun-Hsien Huang, Jingwei Lu, Nilesh Modi, Masaya Hishida, Xiaoming Li, Adil Abdalrahman, Pa ̈r Samuelsson, Thierry Van Cutsem, Yorgo Laba, Yahya Lamrani, Frederic Colas and Xavier Guillaud, Promises and Challenges of Grid Forming: Transmission System Operator, Manufacturer and Academic View Points, submitted to PSCC conference 2024, [link](https://pscc.epfl.ch/modules/request.php?module=oc_program&action=summary.php&id=1227)
 
 T. Qoria, Q. Cossart, C. Li, X. Guillaud, F. Colas, F. Gruson and X. Kestelyn (2018). WP3-Control and Operation of a Grid with 100% Converter-Based Devices. Deliverable 3.2: Local control and simulation tools for large transmission systems. MIGRATE Project, Tech. Rep.
 
@@ -19,13 +18,11 @@ Please see the LICENSE file for details
 
 ## Getting started
 ### Requirements
-* Matlab (>R2016a)
-* Simulink (>R2016a)
+* Matlab (>R2015a)
+* Simulink (>R2015a)
 * Simscape electrical Specialized Technology (>R2015a)
 
-Note: the recommended Matlab versions is above R2021a, VSCLib can be run on version before but it is not fully tested
-
-## Installation
+### Installation
 1. Download the library from this repositery
 > or
 1. Clone this repositery
@@ -37,4 +34,8 @@ setup_VSC_Lib
 > or
 3. add the Library folder in your Matlab path and refresh your simulink library browser
 4. Check that a new library named 'VSC4SPS' has been added in the library browser of Simulink
+
+### Examples
+Some examples are available in the folders "Examples" for different Matlab releases
+These folders include some basics files and the simulation used inside the first cited paper: Promises and Challenges of Grid Forming: Transmission System Operator, Manufacturer and Academic View Points.
 
