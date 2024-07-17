@@ -8,7 +8,11 @@ The package in this repository are a set of Grid-Forming and Grid-Following inve
 ## Terms of use
 The package is distributed as MIT license
 While not required by the terms of the license, we do request that publications derived from the use of the models explicitly cite the following references:
-Carmen Cardozo, Thibault Prevost, Shun-Hsien Huang, Jingwei Lu, Nilesh Modi, Masaya Hishida, Xiaoming Li, Adil Abdalrahman, Pa ̈r Samuelsson, Thierry Van Cutsem, Yorgo Laba, Yahya Lamrani, Frederic Colas and Xavier Guillaud, Promises and Challenges of Grid Forming: Transmission System Operator, Manufacturer and Academic View Points, submitted to PSCC conference 2024, [link](https://pscc.epfl.ch/modules/request.php?module=oc_program&action=summary.php&id=1227)
+
+C. Cardozo, T. Prevost, S. Huang, J. Lu, N. Modi, M. Hishida, X. Li, A. Abdalrahman, P. Samuelsson, T. Van Cutsem, Y. Laba, Y. Lamrani, F. Colas and X. Guillaud, Promises and challenges of grid forming: Transmission system operator, manufacturer and academic view points,
+Electric Power Systems Research, Volume 235, 2024, doi: 10.1016/j.epsr.2024.110855. 
+
+Y. Lamrani, L. Huang, F. Colas, X. Guillaud, F. Blaajberg, C. Cardozo, Thibault Prevost, Grid following converters stability study and control enhancements using an improved test setup," 19th International Conference on AC and DC Power Transmission (ACDC 2023), Glasgow, UK, 2023, pp. 64-69, doi: 10.1049/icp.2023.1309.
 
 T. Qoria, Q. Cossart, C. Li, X. Guillaud, F. Colas, F. Gruson and X. Kestelyn (2018). WP3-Control and Operation of a Grid with 100% Converter-Based Devices. Deliverable 3.2: Local control and simulation tools for large transmission systems. MIGRATE Project, Tech. Rep.
 
